@@ -2,7 +2,7 @@
   "name": "generator-dhkim",
   "version": "0.1.0",
   "description": "node+express+swagger",
-  "main": "index.js",
+  "main": "generators/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/doooky/generator-dhkim.git"
   },
+  "files": [
+    "generators"
+  ],
   "author": "",
   "keywords": [
     "yeoman-generator"
@@ -20,6 +23,9 @@
   },
   "homepage": "https://github.com/doooky/generator-dhkim#readme",
   "dependencies": {
-    "yeoman-generator": "^5.4.2"
+    "pluralize": "^8.0.0",
+    "promise-sequential": "^1.1.1",
+    "yeoman-generator": "^5.4.2",
+    "yosay": "^2.0.2"
   }
 }

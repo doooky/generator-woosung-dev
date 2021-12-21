@@ -7,21 +7,19 @@ module.exports = class extends Generator {
 
   async prompting() {
     this.answers = await this.prompt([
-      // 사용자로부터 입력을 받음.
       {
         type: 'input',
-        name: 'name',
-        message: '프로젝트명을 입력하세요.',
-        default: this.appname, // 현재 폴더네임
-      },
-      {
-        type: 'confirm',
-        name: 'cool',
-        message: '모두 입력했습니까?',
+        name: 'title',
+        message: '제목을 입력하세요.',
       },
     ]);
+  }
 
-    this.log('app name', this.answers.name);
-    this.log('cool feature', this.answers.cool);
+  writing() {
+    const templateHtmlPath = this.templatePath('index.html');
+    const destHtmlPath = this.destinationPath('public/index.html');
+    this.fs.copyTpl(templateHtmlPath, destHtmlPath, {
+      title: this.answers.title,
+    });
   }
 };
