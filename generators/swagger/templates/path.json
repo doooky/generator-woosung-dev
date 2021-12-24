@@ -1,0 +1,9 @@
+{
+    "get": {
+        "description": "<%= routeDescription %>",
+        "x-swagger-router-controller": "<%= routeController %>",
+        "operationId": "<%= routeOperationId %>",
+        "parameters": [],
+        "responses": {}
+    }
+}

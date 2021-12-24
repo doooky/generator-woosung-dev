@@ -9,6 +9,19 @@ class Route {
     return this._getRouteEntity();
   }
 
+  getRoutePath() {
+    let routeArray = this._splittedRoute;
+    if (this._isLastPathAParam()) {
+      routeArray.pop();
+    }
+    return this._hasAVersionPrefix()
+      ? `./swagger/paths/${routeArray[0]}/${
+          routeArray[routeArray.length - 1]
+        }.json`
+      : `./swagger/paths/${routeArray[routeArray.length - 1]}.json`;
+  }
+
+  // operation과 route명으로 method명 생성
   getOperationId(operation) {
     const operationName = operation !== 'post' ? operation : 'create';
     const parameter = this._isLastPathAParam()
@@ -19,10 +32,6 @@ class Route {
     return parameter
       ? `${operationName}By${this._capitalize(parameter)}`
       : `${operationName}`;
-  }
-
-  _isPathFragmentAParameter(pathFragment) {
-    return pathFragment.indexOf('{') >= 0;
   }
 
   _capitalize(string) {
@@ -38,25 +47,14 @@ class Route {
       : this._splittedRoute[this._splittedRoute.length - 1];
   }
 
+  //route의 마지막에 pathParam이 있는지 체크
   _isLastPathAParam() {
     return this._isPathFragmentAParameter(
       this._splittedRoute[this._splittedRoute.length - 1]
     );
   }
-
-  getRoutePath() {
-    let routeArray = this._splittedRoute;
-    if (this._isLastPathAParam()) {
-      routeArray.pop();
-      routeArray[routeArray.length - 1] = pluralize.singular(
-        routeArray[routeArray.length - 1]
-      );
-    }
-    return this._hasAVersionPrefix()
-      ? `./swagger/paths/${routeArray[0]}/${
-          routeArray[routeArray.length - 1]
-        }.json`
-      : `./swagger/paths/${routeArray[routeArray.length - 1]}.json`;
+  _isPathFragmentAParameter(pathFragment) {
+    return pathFragment.indexOf('{') >= 0;
   }
 
   _hasAVersionPrefix() {
