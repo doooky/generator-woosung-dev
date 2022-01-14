@@ -12,7 +12,8 @@
     "url": "git+ssh://git@github.com/doooky/generator-dhkim.git"
   },
   "files": [
-    "generators"
+    "generators",
+    "utils"
   ],
   "author": "",
   "keywords": [
