@@ -1,0 +1,164 @@
+openapi: "3.0.0"
+info:
+  title: "Woosung API"
+  version: "1.0.0"
+servers:
+  - url: "https://tapi.wssw.kr"
+    description: "development"
+  - url: "http://localhost:3001"
+    description: "localhost"
+paths:
+  /e-receipt:
+    $ref: "./swagger/paths/e-receipt/e-receipt.yaml"
+  /e-receipt/company:
+    $ref: "./swagger/paths/e-receipt/company.yaml"
+  /e-receipt/user:
+    $ref: "./swagger/paths/e-receipt/user.yaml"
+  /etc/psis/sleEntp/ormnPrdlst:
+    $ref: "./swagger/paths/etc/psis/sleEntp/ormnPrdlst.yaml"
+  /etc/psis/sleEntp/ormn:
+    $ref: "./swagger/paths/etc/psis/sleEntp/ormn.yaml"
+  /board/boarditemList:
+    $ref: "./swagger/paths/board/boarditemList.yaml"
+  /ws_card:
+    $ref: "./swagger/paths/ws_card/ws_card.yaml#/ws_card"
+  /ws_card/{key}:
+    $ref: "./swagger/paths/ws_card/ws_card.yaml#/key"
+  /salesSlips/keys:
+    $ref: "./swagger/paths/salesSlips/keys.yaml"
+  /salesSlips/:
+    $ref: "./swagger/paths/salesSlips/salesSlips.yaml#/create"
+  /salesSlips/{key}:
+    $ref: "./swagger/paths/salesSlips/salesSlips.yaml#/key"
+  /salesSlips/date/{key}:
+    $ref: "./swagger/paths/salesSlips/date.yaml"
+  /salesSlips/{key}/receipt:
+    $ref: "./swagger/paths/salesSlips/receipt.yaml"
+  /salesSlips/{key}/barcode:
+    $ref: "./swagger/paths/salesSlips/barcode.yaml"
+  /salesSlips/refund:
+    $ref: "./swagger/paths/salesSlips/refund.yaml"
+  /common/syncTableInfo:
+    $ref: "./swagger/paths/common/syncTableInfo.yaml"
+  /common/paymentCode:
+    $ref: "./swagger/paths/common/paymentCode.yaml"
+  /common/yearList:
+    $ref: "./swagger/paths/common/yearList.yaml"
+  /auth/signIn:
+    $ref: "./swagger/paths/auth/signIn.yaml"
+  /auth/join:
+    $ref: "./swagger/paths/auth/join.yaml"
+  /auth/update/email:
+    $ref: "./swagger/paths/auth/update.yaml#/email"
+  /auth/update/cellphone:
+    $ref: "./swagger/paths/auth/update.yaml#/cellphone"
+  /auth/update/password:
+    $ref: "./swagger/paths/auth/update.yaml#/password"
+  /auth/find/id:
+    $ref: "./swagger/paths/auth/find.yaml#/id"
+  /auth/find/password:
+    $ref: "./swagger/paths/auth/find.yaml#/password"
+  /auth/find/hp/{w_nosw}:
+    $ref: "./swagger/paths/auth/find.yaml#/hp_w_nosw"
+  /auth/reset/password:
+    $ref: "./swagger/paths/auth/reset.yaml#/password"
+  /auth/login:
+    $ref: "./swagger/paths/auth/login.yaml"
+  /auth/userinfo/{id}:
+    $ref: "./swagger/paths/auth/userInfo.yaml"
+  /auth/duplicate/userid/{id}:
+    $ref: "./swagger/paths/auth/duplicate.yaml#/userid"
+  /auth/duplicate/cellphone/{cellphone}:
+    $ref: "./swagger/paths/auth/duplicate.yaml#/cellphone"
+  /auth/userList/{saupjano}:
+    $ref: "./swagger/paths/auth/auth.yaml#/saupjano"
+  /auth/delete/{id}:
+    $ref: "./swagger/paths/auth/auth.yaml#/delete_id"
+  /auth/update/role/{id}:
+    $ref: "./swagger/paths/auth/update.yaml#/role"
+  /files/{uCode}:
+    $ref: "./swagger/paths/file/files.yaml"
+  /sale/nsc/jakmul:
+    $ref: "./swagger/paths/sale/nsc.yaml#/jakmul"
+  /sale/nsc/disjakmul:
+    $ref: "./swagger/paths/sale/nsc.yaml#/disjakmul"
+  /sale/nsc/dispaddno:
+    $ref: "./swagger/paths/sale/nsc.yaml#/dispaddno"
+  /sale/nsc/jakarearank:
+    $ref: "./swagger/paths/sale/nsc.yaml#/jakarearank"
+  /sale/nsc/getDBNameList:
+    $ref: "./swagger/paths/sale/nsc.yaml#/getDBNameList"
+  /sale/nsc/getSendDataList:
+    $ref: "./swagger/paths/sale/nsc.yaml#/getSendDataList"
+  /sale/nsc/getLastJobDate:
+    $ref: "./swagger/paths/sale/nsc.yaml#/getLastJobDate"
+  /accountBooks:
+    $ref: "./swagger/paths/accountBooks/accountBooks.yaml#/accountBooks"
+  /accountBooks/detail:
+    $ref: "./swagger/paths/accountBooks/accountBooks.yaml#/detail"
+  /accountBooks/{accountBookKey}:
+    $ref: "./swagger/paths/accountBooks/accountBooks.yaml#/accountBookKey"
+  /items:
+    $ref: "./swagger/paths/items/items.yaml"
+  /items/{itemKey}:
+    $ref: "./swagger/paths/items/items_itemKey.yaml"
+  /items/category:
+    $ref: "./swagger/paths/items/category.yaml#/category"
+  /items/category/ms:
+    $ref: "./swagger/paths/items/category.yaml#/category_ms"
+  /items/company:
+    $ref: "./swagger/paths/items/company.yaml"
+  /items/pesticide:
+    $ref: "./swagger/paths/items/pesticide.yaml#/pesticide"
+  /items/pesticide/name/{searchValue}:
+    $ref: "./swagger/paths/items/pesticide.yaml#/p_name"
+  /items/pesticide/addno/{searchValue}:
+    $ref: "./swagger/paths/items/pesticide.yaml#/addno"
+  /items/pesticide/barcode/{searchValue}:
+    $ref: "./swagger/paths/items/pesticide.yaml#/barcode"
+  /items/pesticide/barcode/count/{barcode}:
+    $ref: "./swagger/paths/items/pesticide.yaml#/barcode_count"
+  /customers:
+    $ref: "./swagger/paths/customers/customers.yaml"
+  /customers/{mb_no}:
+    $ref: "./swagger/paths/customers/customers_mb_no.yaml"
+  /customers/category:
+    $ref: "./swagger/paths/customers/category.yaml"
+  /customers/dupliCK:
+    $ref: "./swagger/paths/customers/dupliCK.yaml"
+  /venders:
+    $ref: "./swagger/paths/venders/venders.yaml"
+  /venders/{mb_no}:
+    $ref: "./swagger/paths/venders/venders_mb_no.yaml"
+  /memos:
+    $ref: "./swagger/paths/memos/memos.yaml"
+  /memos/{memoKey}:
+    $ref: "./swagger/paths/memos/memos_memoKey.yaml"
+  /personal_info_file/fileList:
+    $ref: "./swagger/paths/personal_info_file/fileList.yaml"
+  /personal_info_file/upload:
+    $ref: "./swagger/paths/personal_info_file/upload.yaml"
+  /ws_nsc_send/send_db:
+    $ref: "./swagger/paths/ws_nsc_send/send_db.yaml"
+  /ws_nsc_send:
+    $ref: "./swagger/paths/ws_nsc_send/ws_nsc_send.yaml"
+  /outco/{key}:
+    $ref: "./swagger/paths/outco/key.yaml"
+  /outsales:
+    $ref: "./swagger/paths/outsales/outsales.yaml"
+  /outsale:
+    $ref: "./swagger/paths/outsale/outsale.yaml"
+components:
+  securitySchemes:
+    apiKey:
+      type: "apiKey"
+      in: "header"
+      name: "temp_api_key"
+  schemas:
+    $ref: "./swagger/components/schemas.yaml"
+  parameters:
+    $ref: "./swagger/components/parameters.yaml"
+  requestBody:
+    $ref: "./swagger/components/requestBody.yaml"
+security:
+  - apiKey: []

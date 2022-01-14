@@ -20,6 +20,15 @@ class Route {
     }.yaml`;
   }
 
+  getRoutePathDir() {
+    let routeArray = this._splittedRoute;
+    if (this._isLastPathAParam()) {
+      routeArray.pop();
+      routeArray.push('key');
+    }
+    return `./swagger/paths/${routeArray[0]}/`;
+  }
+
   // operation과 route명으로 method명 생성
   getOperationId(operation) {
     const operationName = operation !== 'post' ? operation : 'create';

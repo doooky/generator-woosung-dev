@@ -212,7 +212,10 @@ module.exports = class extends Generator {
   }
 
   _createSwaggerPathFile(content) {
-    return fs.writeFile(
+    if (!fs.existsSync(this.destinationPath(this.route.getRoutePathDir()))) {
+      fs.mkdirSync(this.destinationPath(this.route.getRoutePathDir()));
+    }
+    return fs.appendFile(
       this.destinationPath(this.route.getRoutePath()),
       YAML.stringify(content),
       (err) => {
