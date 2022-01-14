@@ -1,11 +1,11 @@
 {
-  "name": "generator-dhkim",
+  "name": "woosung-dev",
   "version": "0.1.0",
   "description": "node+express+swagger",
   "main": "generators/index.js",
   "scripts": {
-    "swagger-test": "npx --node-arg=--inspect yo dhkim:swagger",
-    "test": "npx --node-arg=--inspect yo dhkim"
+    "swagger-test": "npx --node-arg=--inspect yo woosung-dev:swagger",
+    "test": "npx --node-arg=--inspect yo woosung-dev"
   },
   "repository": {
     "type": "git",

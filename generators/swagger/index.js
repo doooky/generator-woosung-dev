@@ -41,6 +41,14 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 
+    this.log(
+      yosay(
+        'Welcome to the primo ' +
+          chalk.red('generator-woosung-dev') +
+          ' generator!'
+      )
+    );
+
     this.routeName = args[0];
     this.route = new Route(this.routeName);
 
