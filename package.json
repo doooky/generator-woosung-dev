@@ -27,6 +27,7 @@
   "dependencies": {
     "fs": "^0.0.1-security",
     "json-to-pretty-yaml": "^1.2.2",
+    "mkdirp": "^1.0.4",
     "promise-sequential": "^1.1.1",
     "yamljs": "^0.3.0",
     "yeoman-generator": "^5.4.2",

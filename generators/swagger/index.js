@@ -10,6 +10,7 @@ const seq = require('promise-sequential');
 const Route = require('../../utils/route');
 const yamljs = require('yamljs');
 const YAML = require('json-to-pretty-yaml');
+const mkdirp = require('mkdirp');
 
 const OPERATIONS = Object.keys(enums.SWAGGER_OPERATIONS).map((key, i) => {
   return {
@@ -213,8 +214,11 @@ module.exports = class extends Generator {
 
   _createSwaggerPathFile(content) {
     if (!fs.existsSync(this.destinationPath(this.route.getRoutePathDir()))) {
-      fs.mkdirSync(this.destinationPath(this.route.getRoutePathDir()));
+      fs.mkdirSync(this.destinationPath(this.route.getRoutePathDir()), {
+        recursive: true,
+      });
     }
+
     return fs.appendFile(
       this.destinationPath(this.route.getRoutePath()),
       YAML.stringify(content),
