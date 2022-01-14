@@ -133,14 +133,25 @@ module.exports = class extends Generator {
   }
 
   _promptOperations(props) {
-    const originalMessage = this.operationPrompts[0].message;
+    const originalMessage0 = this.operationPrompts[0].message;
+    const originalMessage1 = this.operationPrompts[1].message;
+    const originalMessage2 = this.operationPrompts[2].message;
     // const defaultValue = this.operationPrompts[1].default;
 
     return props.operations.map((operation, i) => () => {
-      this.operationPrompts[0].message = originalMessage.replace(
+      this.operationPrompts[0].message = originalMessage0.replace(
         '%operation%',
         operation.toUpperCase()
       );
+      this.operationPrompts[1].message = originalMessage1.replace(
+        '%operation%',
+        operation.toUpperCase()
+      );
+      this.operationPrompts[2].message = originalMessage2.replace(
+        '%operation%',
+        operation.toUpperCase()
+      );
+
       // this.operationPrompts[1].default = this.route.getOperationId(operation);
       return this.prompt(
         this._createUniqueParameters(this.operationPrompts, operation)
