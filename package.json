@@ -1,5 +1,5 @@
 {
-  "name": "woosung-dev",
+  "name": "generator-woosung-dev",
   "version": "0.1.0",
   "description": "node+express+swagger",
   "main": "generators/index.js",
