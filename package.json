@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/doooky/generator-dhkim#readme",
   "dependencies": {
+    "fs": "^0.0.1-security",
+    "json-to-pretty-yaml": "^1.2.2",
     "promise-sequential": "^1.1.1",
+    "yamljs": "^0.3.0",
     "yeoman-generator": "^5.4.2",
     "yosay": "^2.0.2"
   }

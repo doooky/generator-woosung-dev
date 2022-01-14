@@ -4,10 +4,12 @@ var path = require('path');
 const fs = require('fs');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const SWAGGER_INDEX_FILE_PATH = 'test/swagger.json';
+const SWAGGER_INDEX_FILE_PATH = 'test/swagger-development.yaml';
 const enums = require('../../utils/enums');
 const seq = require('promise-sequential');
 const Route = require('../../utils/route');
+const yamljs = require('yamljs');
+const YAML = require('json-to-pretty-yaml');
 
 const OPERATIONS = Object.keys(enums.SWAGGER_OPERATIONS).map((key, i) => {
   return {
@@ -43,12 +45,12 @@ module.exports = class extends Generator {
     this.route = new Route(this.routeName);
 
     this.initPrompts = [
-      {
-        type: 'input',
-        name: 'routeController',
-        message: `controller명을 입력해주세요.`,
-        default: this.route.getControllerName(),
-      },
+      // {
+      //   type: 'input',
+      //   name: 'routeController',
+      //   message: `controller명을 입력해주세요.`,
+      //   default: this.route.getControllerName(),
+      // },
       {
         type: 'checkbox',
         name: 'operations',
@@ -59,15 +61,25 @@ module.exports = class extends Generator {
     this.operationPrompts = [
       {
         type: 'input',
-        name: 'description',
-        message: '%operation% 작업에 대한 description을 입력해주세요.',
+        name: 'tags',
+        message: '%operation% 작업에 대한 tags를 입력해주세요.',
       },
       {
         type: 'input',
-        name: 'id',
-        message: '함수 이름을 입력해주세요.',
-        default: ``,
+        name: 'summary',
+        message: '%operation% 작업에 대한 summary를 입력해주세요.',
       },
+      {
+        type: 'input',
+        name: 'description',
+        message: '%operation% 작업에 대한 description을 입력해주세요.',
+      },
+      // {
+      //   type: 'input',
+      //   name: 'id',
+      //   message: '함수 이름을 입력해주세요.',
+      //   default: ``,
+      // },
     ];
 
     this.moreParametersPrompts = [
@@ -113,14 +125,14 @@ module.exports = class extends Generator {
 
   _promptOperations(props) {
     const originalMessage = this.operationPrompts[0].message;
-    const defaultValue = this.operationPrompts[1].default;
+    // const defaultValue = this.operationPrompts[1].default;
 
     return props.operations.map((operation, i) => () => {
       this.operationPrompts[0].message = originalMessage.replace(
         '%operation%',
         operation.toUpperCase()
       );
-      this.operationPrompts[1].default = this.route.getOperationId(operation);
+      // this.operationPrompts[1].default = this.route.getOperationId(operation);
       return this.prompt(
         this._createUniqueParameters(this.operationPrompts, operation)
       )
@@ -128,8 +140,10 @@ module.exports = class extends Generator {
           const op = props.operations[i];
           props.operations[i] = {
             operation: op,
+            tags: operationResults[`${operation}:tags`],
+            summary: operationResults[`${operation}:summary`],
             description: operationResults[`${operation}:description`],
-            id: operationResults[`${operation}:id`],
+            // id: operationResults[`${operation}:id`],
           };
           return props;
         })
@@ -190,26 +204,60 @@ module.exports = class extends Generator {
   }
 
   _createSwaggerPathFile(content) {
-    return this.fs.writeJSON(
+    return fs.writeFile(
       this.destinationPath(this.route.getRoutePath()),
-      content,
-      null,
-      4
+      YAML.stringify(content),
+      (err) => {
+        console.log('==================================================\n');
+        if (err) {
+          console.log(chalk.bold('paths file written ' + chalk.red('fail')));
+          console.log('error message :');
+          console.log(err);
+        } else {
+          console.log(
+            chalk.bold('paths file written ' + chalk.blue('successfully'))
+          );
+          console.log(chalk.yellow('add text :'));
+          console.log(YAML.stringify(content));
+        }
+        console.log('==================================================');
+      }
     );
   }
 
   _addRouteToSwagger(routePath) {
-    let swaggerIndex = this.fs.readJSON(
+    let swaggerIndex = yamljs.load(
       this.destinationPath(SWAGGER_INDEX_FILE_PATH)
     );
     swaggerIndex.paths[routePath] = {
       $ref: this.route.getRoutePath(),
     };
-    return this.fs.writeJSON(
+
+    // return this.fs.writeJSON(
+    //   this.destinationPath(SWAGGER_INDEX_FILE_PATH),
+    //   swaggerIndex,
+    //   null,
+    //   4
+    // );
+
+    return fs.writeFile(
       this.destinationPath(SWAGGER_INDEX_FILE_PATH),
-      swaggerIndex,
-      null,
-      4
+      YAML.stringify(swaggerIndex),
+      (err) => {
+        console.log('==================================================\n');
+        if (err) {
+          console.log(chalk.bold('swagger file written ' + chalk.red('fail')));
+          console.log('error message :');
+          console.log(err);
+        } else {
+          console.log(
+            chalk.bold('swagger file written ' + chalk.blue('successfully'))
+          );
+          console.log(chalk.yellow('add text :'));
+          console.log(YAML.stringify(swaggerIndex.paths[routePath]));
+        }
+        console.log('==================================================');
+      }
     );
   }
 
@@ -217,10 +265,12 @@ module.exports = class extends Generator {
     let file = {};
     props.operations.forEach((operation) => {
       file[operation.operation] = {
+        tags: operation.tags,
+        summary: operation.summary,
         description: operation.description,
-        sumary: operation.id,
-        'x-swagger-router-controller': props.routeController,
-        operationId: operation.id,
+        // sumary: operation.id,
+        // 'x-swagger-router-controller': props.routeController,
+        // operationId: operation.id,
         parameters: operation.parameters.map((parameter) => {
           return {
             name: parameter.name,
@@ -229,6 +279,14 @@ module.exports = class extends Generator {
             type: parameter.type,
           };
         }),
+        responses: {
+          200: {
+            description: '200',
+          },
+          500: {
+            description: '500 error',
+          },
+        },
       };
     });
     return file;

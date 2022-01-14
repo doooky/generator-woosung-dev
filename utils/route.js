@@ -13,12 +13,11 @@ class Route {
     let routeArray = this._splittedRoute;
     if (this._isLastPathAParam()) {
       routeArray.pop();
+      routeArray.push('key');
     }
-    return this._hasAVersionPrefix()
-      ? `./swagger/paths/${routeArray[0]}/${
-          routeArray[routeArray.length - 1]
-        }.json`
-      : `./swagger/paths/${routeArray[routeArray.length - 1]}.json`;
+    return `./swagger/paths/${routeArray[0]}/${
+      routeArray[routeArray.length - 1]
+    }.yaml`;
   }
 
   // operation과 route명으로 method명 생성
@@ -30,8 +29,10 @@ class Route {
           .replace('}', '')
       : null;
     return parameter
-      ? `${operationName}By${this._capitalize(parameter)}`
-      : `${operationName}`;
+      ? `${operationName}${this._splittedRoute[0]}From${this._capitalize(
+          parameter
+        )}`
+      : `${operationName}${this._splittedRoute[0]}`;
   }
 
   _capitalize(string) {
