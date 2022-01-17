@@ -161,7 +161,7 @@ module.exports = class extends Generator {
           const op = props.operations[i];
           props.operations[i] = {
             operation: op,
-            tags: operationResults[`${operation}:tags`],
+            tags: [operationResults[`${operation}:tags`]],
             summary: operationResults[`${operation}:summary`],
             description: operationResults[`${operation}:description`],
             // id: operationResults[`${operation}:id`],
