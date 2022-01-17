@@ -9,6 +9,13 @@ First, install [Yeoman](http://yeoman.io) and generator-nodegen using [npm](http
 npm install -g yo
 npm install -g generator-woosung-dev
 ```
+## route generator
+
+New route+controller+test js:
+
+```bash
+yo woosung-dev:route
+```
 
 ## swagger generator
 
