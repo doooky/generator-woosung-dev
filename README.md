@@ -1,5 +1,5 @@
-# node-swagger [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> NodeJS generator
+# woosung-dev
+> NodeJS + express + swagger + jest
 
 ## Installation
 
