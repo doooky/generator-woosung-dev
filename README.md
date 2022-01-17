@@ -7,22 +7,15 @@ First, install [Yeoman](http://yeoman.io) and generator-nodegen using [npm](http
 
 ```bash
 npm install -g yo
-npm install -g generator-node-swagger
+npm install -g generator-woosung-dev
 ```
 
+## swagger generator
 
-Then generate your new project:
-
-```bash
-yo node-swagger
-```
-
-## Scafolding
-
-New route:
+New swagger document:
 
 ```bash
-yo node-swagger:route users
+yo woosung-dev:swagger /users
 ```
 
 ## Getting To Know Yeoman
