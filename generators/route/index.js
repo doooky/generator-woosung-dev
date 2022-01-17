@@ -9,6 +9,11 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: 'input',
+        name: 'route',
+        message: 'The route of your controller? ',
+      },
+      {
+        type: 'input',
         name: 'controller',
         message: 'The name of your restful controller? ',
       },
@@ -16,11 +21,6 @@ module.exports = class extends Generator {
         type: 'input',
         name: 'model',
         message: 'The model you want a controller for? ',
-      },
-      {
-        type: 'input',
-        name: 'route',
-        message: 'The route of your controller? ',
       },
     ];
 

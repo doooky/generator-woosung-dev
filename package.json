@@ -5,7 +5,6 @@
   "main": "generators/index.js",
   "scripts": {
     "swagger-test": "npx --node-arg=--inspect yo woosung-dev:swagger",
-    "controller-test": "npx --node-arg=--inspect yo woosung-dev:controller",
     "route-test": "npx --node-arg=--inspect yo woosung-dev:route",
     "test": "npx --node-arg=--inspect yo woosung-dev"
   },
