@@ -1,5 +1,5 @@
 # woosung-dev
-> NodeJS generator
+> NodeJS + express + swagger + jest
 
 ## Installation
 
