@@ -1,10 +1,18 @@
 'use strict';
 const Generator = require('yeoman-generator');
+const chalk = require('chalk');
 const yosay = require('yosay');
 
 module.exports = class extends Generator {
   prompting() {
-    this.log(yosay("Let's create a restful controller for your model!"));
+    this.log(
+      yosay(
+        'Welcome to ' +
+          chalk.red('generator-woosung-dev') +
+          ' generator!' +
+          " Let's create route + controller + test!"
+      )
+    );
 
     const prompts = [
       {

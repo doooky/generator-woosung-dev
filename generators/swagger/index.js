@@ -44,9 +44,10 @@ module.exports = class extends Generator {
 
     this.log(
       yosay(
-        'Welcome to the primo ' +
+        'Welcome to ' +
           chalk.red('generator-woosung-dev') +
-          ' generator!'
+          ' generator!' +
+          " Let's create Swagger API Document!"
       )
     );
 
