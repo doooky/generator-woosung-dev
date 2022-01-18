@@ -4,4 +4,5 @@
 /__test__
 /controllers
 /src
+/routes
 swagger-development.yaml

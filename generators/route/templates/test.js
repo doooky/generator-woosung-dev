@@ -7,7 +7,7 @@ describe('route', () => {
   describe('<%= route %>', () => {
 
     describe('GET <%= route %>', () => {
-      test('should return a list wtesth <%= model %>s', async () => {
+      test('should return a list <%= model %>s', async () => {
         expect(response.status).toEqual(200);
       });
     });

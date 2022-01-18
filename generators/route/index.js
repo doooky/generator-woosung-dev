@@ -18,17 +18,20 @@ module.exports = class extends Generator {
       {
         type: 'input',
         name: 'route',
-        message: 'The route of your controller? ',
+        message: 'route를 입력해주세요.',
+        default: '/items',
       },
       {
         type: 'input',
         name: 'controller',
-        message: 'The name of your restful controller? ',
+        message: 'restful controller명을 입력해주세요. ',
+        default: 'items',
       },
       {
         type: 'input',
         name: 'model',
-        message: 'The model you want a controller for? ',
+        message: 'model명을 입력해주세요. ',
+        default: 'item',
       },
     ];
 
