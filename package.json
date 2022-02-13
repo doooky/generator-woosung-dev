@@ -6,6 +6,7 @@
   "scripts": {
     "swagger-test": "npx --node-arg=--inspect yo woosung-dev:swagger",
     "route-test": "npx --node-arg=--inspect yo woosung-dev:route",
+    "jsdoc-test": "npx --node-arg=--inspect yo woosung-dev:swagger-jsdoc",
     "test": "npx --node-arg=--inspect yo woosung-dev"
   },
   "repository": {
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/doooky/generator-dhkim#readme",
   "dependencies": {
+    "doctrine": "^3.0.0",
     "fs": "^0.0.1-security",
     "json-to-pretty-yaml": "^1.2.2",
     "mkdirp": "^1.0.4",
